@@ -1,0 +1,32 @@
+
+<!-- signup.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <label for="signup_user_type">Select User Type:</label>
+            <select id="signup_user_type" name="signup_user_type">
+                <option value="counselor">Counselor</option>
+                <option value="child">Child</option>
+            </select><br>
+            <label for="signup_username">Username:</label>
+            <input type="text" id="signup_username" name="signup_username" required><br>
+            <label for="signup_password">Password:</label>
+            <input type="password" id="signup_password" name="signup_password" required><br>
+            <button type="button" onclick="signup()">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a>.</p>
+    </div>
+
+    <script src="login.html"></script>
+</body>
+</html>

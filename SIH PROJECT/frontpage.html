@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image:url(mental.jpg);
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+             text-align: center;
+            position:sticky;
+            padding: 1rem;
+            background-image: url('header-background.jpg'); /* Replace with your actual image */
+            background-size: cover;
+            
+            background-position: center;
+             display: flex;
+             justify-content: space-between;
+              align-items: center;
+              
+        }
+
+        header img {
+            position: relative;
+            left: 10px;
+            top: 50%;
+            /* transform: translateY(-50%); */
+            width: 50px;
+            height: auto;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-image: url('mental.jpg'); /* Replace with your actual image */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        .lessons, .music, .journal {
+           
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .lesson-card, .music-card, .journal-card {
+            /* background-image: url(bookand\ music.jpg); */
+            width: 300px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #e6e6e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('footer-background.jpg'); /* Replace with your actual image */
+            background-size: cover;
+            background-position: center;
+            justify-content: space-between;
+        }
+
+        #music-icon, #counseling-icon {
+            width: 30px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        #mood-icons {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+       
+          <h1> <b>Home</b></h1>
+        <h1>Mental Health Hub</h1>
+ <span><img src="doctor.jpg" alt="Counseling Icon"  >... DOCTOR</span>
+
+ <img src="music2.png" alt="Music" >
+    </header>
+
+    <section class="lessons">
+        <div class="lesson-card">
+            <h2>Lesson 1</h2>
+            <p>Description of lesson 1.
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eius quo nobis nam reiciendis similique voluptate quam atque, eaque iusto, beatae quibusdam repellat expedita facilis ut harum cum quae explicabo quod, aut velit. Impedit, mollitia? Asperiores, dicta nesciunt id, odit minus nisi inventore soluta natus praesentium atque excepturi nemo aspernatur!..</p>
+            <a href="#">Learn More</a>
+        </div>
+
+        <div class="lesson-card">
+            <h2>Lesson 2</h2>
+            <p>Description of lesson 2..
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis impedit illum, quod quisquam fugiat velit eius necessitatibus recusandae voluptas itaque ullam aspernatur reiciendis tempora, iusto aperiam praesentium optio sequi? Possimus aut dicta ipsum nam quis modi laborum rem illum eaque quos. Ad qui maxime consectetur nobis, perferendis cum deleniti dolore?.</p>
+            <a href="#">Learn More</a>
+        </div>
+    </section>
+
+    <section class="music">
+        <div class="music-card">
+            <h2>Music Lesson 1</h2>
+            <p>Description of music lesson 1...
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto ut, cupiditate hic qui, possimus officiis accusamus enim minima quibusdam veniam quasi. Voluptatem tempore accusamus iusto obcaecati, commodi atque et ipsa maxime voluptatum eum tempora? Impedit sed magnam ut aliquid temporibus?
+            </p>
+            <a href="#">Learn More</a>
+        </div>
+
+        <div class="music-card">
+            <h2>Music Lesson 2</h2>
+            <p>Description of music lesson 2...</p>
+            <a href="#">Learn More</a>
+        </div>
+    </section>
+
+    <section class="journal">
+        <div class="journal-card">
+            <h2>Journal Entry 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo distinctio magni laudantium sequi? Inventore eveniet tenetur voluptatibus alias sit modi. Quis alias fuga eius aspernatur at exercitationem sequi, eveniet, quae laboriosam ducimus, possimus praesentium.</p>
+            <a href="#">Read More</a>
+        </div>
+
+        <div class="journal-card">
+            <h2>Journal Entry 2</h2>
+            <p>Content of journal entry 2...</p>
+            <a href="#">Read More</a>
+        </div>
+    </section>
+
+    <footer>
+       
+        
+        <div id="mood-icons">
+            <span>Mood:</span>
+            <img id="music-icon" src="mood off.jpg" alt="sad Icon">
+        </div>
+        
+        <div id="mood-icons">
+            <span>Mood:</span>
+            <img id="music-icon" src="mood img.avif" alt="Happy Icon">
+        </div>
+    </footer>
+    <script>
+        function changeMood() {
+            const moodIcon = document.getElementById("music-icon");
+            const moodArray = ["happy", "sad", "calm", "excited"]; // Add more moods as needed
+            const randomMood = moodArray[Math.floor(Math.random() * moodArray.length)];
+            moodIcon.src = `${randomMood}-icon.png`;
+        }
+
+        // Simulate changing mood every 5 seconds (replace with your actual logic)
+        setInterval(changeMood, 5000);
+    </script>
+
+
+</body>
+</html>

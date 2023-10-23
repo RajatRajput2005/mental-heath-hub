@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    background-image: url(progr.jpg);
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    margin: 0; /* Remove default margin on body */
+    padding: 0; /* Remove default padding on body */
+}
+
+
+        #progress-container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            width: 0;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+        }
+
+        .happy {
+            background-color: #4caf50; /* Green for happy */
+        }
+
+        .sad {
+            background-color: #f44336; /* Red for sad */
+        }
+
+        .neutral {
+            background-color: #ffc107; /* Yellow for neutral */
+        }
+
+        #question-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        .option {
+            margin: 5px 0;
+        }
+
+        .recommendation {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .recommendation-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .redirect-button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress-container">
+    <div id="progress-bar" class="neutral">0%</div>
+</div>
+
+<div id="question-container">
+    <p id="question">Question 1: What is 2 + 2?</p>
+    <div class="options" id="options1">
+        <label class="option"><input type="radio" name="answer1" value="a"> a) 3</label>
+        <label class="option"><input type="radio" name="answer1" value="b"> b) 4</label>
+        <label class="option"><input type="radio" name="answer1" value="c"> c) 5</label>
+        <label class="option"><input type="radio" name="answer1" value="d"> d) 6</label>
+    </div>
+
+    <!-- Additional Question -->
+    <p id="question">Question 2: What is 2 * 3?</p>
+    <div class="options" id="options2">
+        <label class="option"><input type="radio" name="answer2" value="a"> a) 5</label>
+        <label class="option"><input type="radio" name="answer2" value="b"> b) 6</label>
+        <label class="option"><input type="radio" name="answer2" value="c"> c) 7</label>
+        <label class="option"><input type="radio" name="answer2" value="d"> d) 8</label>
+    </div>
+
+    <button onclick="checkAnswer()">Submit Answer</button>
+</div>
+
+<div id="feedback"></div>
+
+<script>
+    let currentQuestion = 1;
+    let correctAnswers = 0;
+    let totalQuestions = 2; // Set the total number of questions
+
+    function checkAnswer() {
+        const options = document.getElementsByName('answer' + currentQuestion);
+        const feedback = document.getElementById('feedback');
+
+        let selectedOption;
+        options.forEach(option => {
+            if (option.checked) {
+                selectedOption = option.value;
+            }
+        });
+
+        // You can customize the questions and correct answers as needed
+        switch (currentQuestion) {
+            case 1:
+                if (selectedOption === 'b') {
+                    correctAnswers++;
+                    feedback.textContent = 'Correct!';
+                } else {
+                    feedback.textContent = 'Wrong!';
+                }
+                break;
+            case 2:
+                if (selectedOption === 'b') {
+                    correctAnswers++;
+                    feedback.textContent = 'Correct!';
+                } else {
+                    feedback.textContent = 'Wrong!';
+                }
+                break;
+            // Additional questions...
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion <= totalQuestions) {
+            // Update the question and options
+            document.getElementById('question').textContent = `Question ${currentQuestion}: What is...?`;
+            options.forEach(option => {
+                option.checked = false;
+            });
+        } else {
+            // Display final score
+            document.getElementById('question-container').style.display = 'none';
+            feedback.textContent = `Quiz Completed! Your Score: ${correctAnswers}/${totalQuestions}`;
+
+            // Show recommendations based on mood
+            showRecommendation();
+        }
+
+        // Update the progress bar
+        const progress = (correctAnswers / (currentQuestion - 1)) * 100;
+        updateProgressBar(progress);
+    }
+
+    function updateProgressBar(progress) {
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${progress}%`;
+
+        if (progress >= 70) {
+            progressBar.textContent = `${Math.round(progress)}% Happy 😃`;
+            progressBar.className = 'happy';
+        } else if (progress >= 40) {
+            progressBar.textContent = `${Math.round(progress)}% Neutral 😐`;
+            progressBar.className = 'neutral';
+        } else {
+            progressBar.textContent = `${Math.round(progress)}% Sad 😢`;
+            progressBar.className = 'sad';
+        }
+    }
+
+    function showRecommendation() {
+        const feedback = document.getElementById('feedback');
+        const progressBar = document.getElementById('progress-bar');
+        const recommendationContainer = document.createElement('div');
+        recommendationContainer.classList.add('recommendation');
+
+        if (progressBar.classList.contains('neutral')) {
+            // Recommend lessons for neutral mood
+            recommendationContainer.textContent = 'Recommend Lessons!';
+            addRedirectButtons(recommendationContainer, 'lessons.html', 'Take Lessons');
+        } else if (progressBar.classList.contains('sad')) {
+            // Recommend doctors and lessons for sad mood
+            recommendationContainer.textContent = 'Recommend Doctors and Lessons!';
+            addRedirectButtons(recommendationContainer, 'doctors.html', 'Find Doctors', 'lessons.html', 'Take Lessons');
+        }
+
+        feedback.appendChild(recommendationContainer);
+    }
+
+    function addRedirectButtons(container, ...buttonDetails) {
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('recommendation-buttons');
+
+        for (let i = 0; i < buttonDetails.length; i += 2) {
+            const button = document.createElement('button');
+            button.textContent = buttonDetails[i + 1];
+            button.classList.add('redirect-button');
+            button.onclick = function () {
+                window.location.href = buttonDetails[i];
+            };
+
+            buttonContainer.appendChild(button);
+        }
+
+        container.appendChild(buttonContainer);
+    }
+</script>
+
+</body>
+</html>
